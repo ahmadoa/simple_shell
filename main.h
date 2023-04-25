@@ -47,7 +47,11 @@ void reassign_pr(char **lineptr, size_t *sz, char *buff, size_t inp);
 char *_strtok(char *s, char *delim);
 unsigned int sim(char delim, const char *s);
 
-/* builtin strtucture */
+/**
+ * struct builtin - strtucture for handling builting commands
+ * @env: handling enviornment command such as env
+ * @exit: handling exiting the simple shell
+ */
 struct builtin
 {
 	char *env;
