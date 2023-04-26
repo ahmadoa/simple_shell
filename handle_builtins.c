@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * handle_builtin - handles builtin commands
  * @argv: arguments of input command

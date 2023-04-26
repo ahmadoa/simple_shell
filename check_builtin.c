@@ -1,5 +1,4 @@
 #include "main.h"
-
 /**
  * check_builtin - checks if a command is built in
  * @argv: arguments of the command
