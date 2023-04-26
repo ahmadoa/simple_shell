@@ -18,11 +18,16 @@
 /* string tokenizer */
 char **tokenize(char *line);
 
+/* handle shell */
+void handle_input(__attribute__((unused)) char *lineptr, char **c_argv, char **paths, char *av[], int inp_count);
+void run_shell(char *av[], __attribute__((unused)) char *envp[]);
+
 /* handle command execution */
-void execmd(char *final, char **argv);
+void execmd(char *final, char **argv, char **ar, int inp_count);
+void _err(char **argv, char **c_argv, int inp_count);
 
 /* handle builtin commands */
-int check_builtin(char **argv, char *line);
+int check_builtin(char **argv, char *line, char **ar, int inp_count);
 int handle_builtin(char **argv, char *line);
 void exit_function(char **argv, char *line);
 
@@ -37,6 +42,7 @@ char *_strcat(char *dest, const char *src);
 char *_strncat(char *dest, const char *src, size_t n);
 int num_len(int num);
 char *_itoa(int num);
+void print_dec(int num);
 
 /* getline function & helpers */
 ssize_t _getline(char **lineptr, size_t *sz, FILE *thread);
