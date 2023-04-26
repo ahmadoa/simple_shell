@@ -9,6 +9,7 @@
 int handle_builtin(char **argv, char *line)
 {
 	struct builtin builtin = {"env", "exit"};
+
 	if (_strcmp(*argv, builtin.env) == 0)
 	{
 		env_function();
