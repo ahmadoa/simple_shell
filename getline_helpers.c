@@ -2,6 +2,7 @@
 
 /**
  * _realloc - resizes memory block pointed by pr
+ * @pr: pointer to existing memory block
  * @old_size: old size of the memory block
  * @new_size: new size to replace the old size memory block
  * Return: NULL if it fails, memory block if it successeds
