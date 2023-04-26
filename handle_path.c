@@ -1,6 +1,7 @@
 #include "main.h"
 
-/** get_path - gets the env path
+/**
+ * get_path - gets the env path
  * Return: NULL if it fails, path if it successeds
  */
 

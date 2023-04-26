@@ -39,7 +39,7 @@ char *_strcat(char *dest, const char *src)
 }
 
 /**
- * _strcat - concantenates n char from source string
+ * _strncat - concantenates n char from source string
  * @dest: pointer to destination string
  * @src: pointer to source string
  * @n: number of chars to copy from src

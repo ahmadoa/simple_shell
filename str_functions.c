@@ -51,7 +51,7 @@ int _strncmp(char *str1, char *str2, int n)
 }
 /**
  * _strdup - duplicates a given string
- * @str: string
+ * @s: string
  * Return: returns a pointer to the string
  */
 char *_strdup(char *s)
