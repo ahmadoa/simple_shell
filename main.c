@@ -110,7 +110,7 @@ int main(int argc, char *av[], char *envp[])
 			perror(av[0]);
 		else
 			execmd(pathargv, argv);
-		free(lineptr);
-		return (0);
 	}
+	free(lineptr);
+	return (0);
 }
