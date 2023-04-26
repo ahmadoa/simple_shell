@@ -38,7 +38,7 @@ char *_strtok(char *s, char *delim)
 			break;
 	}
 	if (second_tok[i] == 0)
-		second_tok == NULL;
+		second_tok = NULL;
 	else
 	{
 		second_tok[i] = 0;

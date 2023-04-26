@@ -11,7 +11,8 @@
 ssize_t _getline(char **lineptr, size_t *sz, FILE *thread)
 {
 	static ssize_t input;
-	char c = 'x', *buf;
+	char c = 'x';
+	char *buf;
 	int readBool;
 	ssize_t res;
 

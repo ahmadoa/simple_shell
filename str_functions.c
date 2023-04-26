@@ -54,18 +54,18 @@ int _strncmp(char *str1, char *str2, int n)
  * @str: string
  * Return: returns a pointer to the string
  */
-char *_strdup(char *str)
+char *_strdup(char *s)
 {
 	char *ptr;
 	int i, len;
 
-	if (str == NULL)
+	if (s == NULL)
 		return (NULL);
-	len = _strlen(str);
+	len = _strlen(s);
 	ptr = malloc(sizeof(char) * (len + 1));
 	if (!ptr)
 		return (NULL);
-	for (i = 0; *str != '\0'; str++, i++)
+	for (i = 0; *s != '\0'; s++, i++)
 		ptr[i] = s[0];
 	ptr[i++] = '\0';
 	return (ptr);
