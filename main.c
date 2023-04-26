@@ -57,7 +57,8 @@ char **tokenize(char *line)
 void intHandler(int sigint)
 {
 	(void)sigint;
-	write(STDERR_FILENO, "\n$ ", 3);
+	write(STDERR_FILENO, "\n", 1);
+	exit(EXIT_SUCCESS);
 }
 
 /**
