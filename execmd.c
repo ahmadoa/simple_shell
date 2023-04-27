@@ -4,6 +4,8 @@
  * execmd - executes a command in a child process
  * @final: final command to execute
  * @argv: tokens of the command
+ * @ar: cmd command
+ * @inp_count: counter
  * Return: void
  */
 
