@@ -15,12 +15,14 @@ char *_strcpy(char *dest, const char *src)
 	dest[i] = '\0';
 	return (dest);
 }
+
 /**
  * _strcat - concantenates two strings
  * @dest: pointer of destination string
  * @src: pointer to add to destination
  * Return: pointer of destinetion string
  */
+
 char *_strcat(char *dest, const char *src)
 {
 	char *destTemp;
@@ -85,11 +87,13 @@ int num_len(int num)
 	}
 	return (len);
 }
+
 /**
  * _itoa - converts int to string
  * @num: integer to convert
  * Return: converted string
  */
+
 char *_itoa(int num)
 {
 	char *buffer;
