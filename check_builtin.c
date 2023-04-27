@@ -3,18 +3,22 @@
  * check_builtin - checks if a command is built in
  * @argv: arguments of the command
  * @line: read input line
- * @ar: args
- * @inp_count: inp string counter
- * Return: 1 if it succedds, 0 if it doesn't
+ * @ct_output: inp string counter
+ * Return: 1 if it fails, function to execute if it successeds
  */
-int check_builtin(char **argv, char *line, char **ar, int inp_count)
+int check_builtin(char **argv, int ct_output, char *line)
 {
-	if (handle_builtin(argv, line))
+	char *builtins[2] = {"exit", "env"};
+
+	if (*argv == NULL)
 		return (1);
-	else if (**argv == '/')
-	{
-		execmd(argv[0], argv, ar, inp_count);
-		return (1);
-	}
-	return (0);
+
+	else if (_strcmp(builtins[0], argv[0]) == 0)
+		return (handle_builtin(argv, ct_output, line));
+
+	else if (_strcmp(builtins[1], argv[0]) == 0)
+		return (handle_builtin(argv, ct_output, line));
+
+	else
+		return (_argscmp(argv, ct_output));
 }

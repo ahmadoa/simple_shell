@@ -5,36 +5,30 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <sys/wait.h>
+#include <sys/stat.h>
 #include <stdlib.h>
 #include <string.h>
 #include <stddef.h>
 #include <signal.h>
 
+#define DELIM " ,:\n\t"
+#define STDOUT STDOUT_FILENO
+#define STDIN STDIN_FILENO
+#define STDERR STDERR_FILENO
+
 /* string tokenizer */
 char **tokenize(char *line);
 
-/* handle shell */
-/**
- * handle_input - handles input from cmd
- * @lineptr: pointer to buffer where read line stored
- * @c_argv: read tokenized line
- * @paths: paths env vars
- * @av: command read line
- * @inp_count: counter
- * Return: void
- */
-void handle_input(__attribute__((unused)) char *lineptr,
-		char **c_argv, char **paths, char *av[], int inp_count);
-void run_shell(char *av[], __attribute__((unused)) char *envp[]);
+/* read input */
+char *c_reader(void);
 
 /* handle command execution */
-void execmd(char *final, char **argv, char **ar, int inp_count);
-void _err(char **argv, char **c_argv, int inp_count);
+int execmd(char **argv, int ct_output);
+void _err(char *line);
 
 /* handle builtin commands */
-int check_builtin(char **argv, char *line, char **ar, int inp_count);
-int handle_builtin(char **argv, char *line);
-void exit_function(char **argv, char *line);
+int check_builtin(char **argv, int ct_output, char *line);
+int handle_builtin(char **argv, int ct_output, char *line);
 
 /* string functions */
 int _strcmp(char *s1, char *s2);
@@ -47,7 +41,6 @@ char *_strcat(char *dest, const char *src);
 char *_strncat(char *dest, const char *src, size_t n);
 int num_len(int num);
 char *_itoa(int num);
-void print_dec(int num);
 
 /* getline function & helpers */
 ssize_t _getline(char **lineptr, size_t *sz, FILE *thread);
@@ -58,27 +51,10 @@ void reassign_pr(char **lineptr, size_t *sz, char *buff, size_t inp);
 char *_strtok(char *s, char *delim);
 unsigned int sim(char delim, const char *s);
 
-/**
- * struct builtin - strtucture for handling builting commands
- * @env: handling enviornment command such as env
- * @exit: handling exiting the simple shell
- */
-struct builtin
-{
-	char *env;
-	char *exit;
-};
-
 /* environment variables & functions */
 extern char **environ;
-typedef void (*sighandler_t)(int);
-sighandler_t signal(int signum, sighandler_t handler);
-void env_function(void);
-
-/* handle env var commands */
-char *get_path(void);
-char *concat_path(char *path, char *commandfr);
-char *check_path(char **path, char *commandfr);
-void free_buffers(char **buf);
+char *get_env(void);
+int _argscmp(char **argv, int ct_output);
+char *check_path(char **argv);
 
 #endif /* _MAIN_H_ */

@@ -8,7 +8,7 @@
 
 char **tokenize(char *line)
 {
-	char *buf = NULL, *bufp = NULL, *token = NULL, *delim = " :\t\r\n";
+	char *buf = NULL, *bufp = NULL, *token = NULL, *delim = " ,:\t\n";
 	char **tokens = NULL;
 	int tokenizer = 1;
 	size_t i = 0, flag = 0;

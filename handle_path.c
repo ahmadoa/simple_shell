@@ -1,95 +1,74 @@
 #include "main.h"
 
 /**
- * get_path - gets the env path
- * Return: NULL if it fails, path if it successeds
+ * _argscmp - compares arguments
+ * @argv: tokenized cmd input
+ * @ct_output: output counter
+ * Return: ct_output
  */
 
-char *get_path(void)
+int _argscmp(char **argv, int ct_output)
 {
-	int i;
-	char **env = environ;
-	char *path = NULL;
+	int count_path = 0;
+	struct stat st;
+	char *cp_argv = NULL;
 
-	while (*env)
+	cp_argv = malloc(sizeof(char *) * _strlen(argv[0]));
+	_strcpy(cp_argv, argv[0]);
+
+	if (stat(argv[0], &st) == 0 && cp_argv[0] != '/')
+		argv[0] = check_path(argv);
+	else if (stat(argv[0], &st) == -1)
+		argv[0] = check_path(argv);
+
+	if (_strcmp(cp_argv, argv[0]) != 0)
+		count_path = 1;
+
+	if (stat(argv[0], &st) == 0)
+		ct_output = execmd(argv, ct_output);
+	else
 	{
-		if (_strncmp(*env, "PATH=", 5) == 0)
-		{
-			path = *env;
-			while (*path && i < 5)
-			{
-				path++;
-				i++;
-			}
-			return (path);
-		}
-		env++;
+		_err(argv[0]);
+		ct_output = 127;
 	}
-	return (NULL);
+
+	if (count_path == 1)
+		free(argv[0]);
+	free(cp_argv);
+	return (ct_output);
 }
 
 /**
- * concat_path - concatenates the command we read and each
- * dir from the path
- * @path: tokenized path variable
- * @commandfr: first argument from read input
- * Return: pointer to the concatenated string
+ * check_path - checks if path exists in env paths
+ * @argv: tokenized cmd input
+ * Return: final command
  */
 
-char *concat_path(char *path, char *commandfr)
+char *check_path(char **argv)
 {
-	char *buf;
-	size_t i = 0, j = 0;
+	char *path = get_env();
+	char *pathcp = NULL, *f_cmd = argv[0];
+	struct stat st;
+	size_t size;
+	char *tknz_path;
 
-	if (commandfr == 0)
-		commandfr = "";
-	if (path == 0)
-		path = "";
+	if (!path)
+		return (f_cmd);
+	tknz_path = _strtok(path, ":");
 
-	buf = malloc(sizeof(char) * (_strlen(path) + _strlen(commandfr) + 2));
-	if (!buf)
-		return (NULL);
-
-	while (path[i])
+	while (tknz_path)
 	{
-		buf[i] = path[i];
-		i++;
-	}
-	if (path[i - 1] != '/')
-	{
-		buf[i] = '/';
-		i++;
-	}
+		size = _strlen(tknz_path) + _strlen(f_cmd) + 2;
+		pathcp = malloc(sizeof(char) * size);
+		_strcpy(pathcp, tknz_path);
+		_strcat(pathcp, "/");
+		_strcat(pathcp, f_cmd);
 
-	while (commandfr[j])
-	{
-		buf[i + j] = commandfr[j];
-		j++;
+		if (stat(pathcp, &st) == 0 && st.st_mode & X_OK)
+			return (pathcp);
+
+		tknz_path = _strtok(NULL, ":");
+		free(pathcp);
 	}
-	buf[i + j] = '\0';
-	return (buf);
-}
-
-/**
- * check_path - checks if the concatenated path
- * is in the environment variables
- * @path: tokenized path variable
- * @commandfr: first argument from the read command
- * Return: NULL if it fails, concatenated path if found
- */
-
-char *check_path(char **path, char *commandfr)
-{
-	int i = 0;
-	char *output;
-
-	while (path[i])
-	{
-		output = concat_path(path[i], commandfr);
-		if (access(output, F_OK | X_OK) == 0)
-			return (output);
-		free(output);
-		i++;
-	}
-	return (NULL);
+	return (f_cmd);
 }
