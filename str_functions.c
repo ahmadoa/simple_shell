@@ -51,22 +51,22 @@ int _strncmp(char *str1, char *str2, int n)
 }
 /**
  * _strdup - duplicates a given string
- * @s: string
+ * @str: string
  * Return: returns a pointer to the string
  */
-char *_strdup(char *s)
+char *_strdup(char *str)
 {
 	char *ptr;
 	int i, len;
 
-	if (s == NULL)
+	if (str == NULL)
 		return (NULL);
-	len = _strlen(s);
+	len = _strlen(str);
 	ptr = malloc(sizeof(char) * (len + 1));
 	if (!ptr)
 		return (NULL);
-	for (i = 0; *s != '\0'; s++, i++)
-		ptr[i] = s[0];
+	for (i = 0; *str != '\0'; str++, i++)
+		ptr[i] = str[0];
 	ptr[i++] = '\0';
 	return (ptr);
 }
