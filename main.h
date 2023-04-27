@@ -14,7 +14,17 @@
 char **tokenize(char *line);
 
 /* handle shell */
-void handle_input(__attribute__((unused)) char *lineptr, char **c_argv, char **paths, char *av[], int inp_count);
+/**
+ * handle_input - handles input from cmd
+ * @lineptr: pointer to buffer where read line stored
+ * @c_argv: read tokenized line
+ * @paths: paths env vars
+ * @av: command read line
+ * @inp_count: counter
+ * Return: void
+ */
+void handle_input(__attribute__((unused)) char *lineptr,
+		char **c_argv, char **paths, char *av[], int inp_count);
 void run_shell(char *av[], __attribute__((unused)) char *envp[]);
 
 /* handle command execution */
