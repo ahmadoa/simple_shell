@@ -75,7 +75,8 @@ int _cd(char **t_argv, __attribute__((unused))int err)
  * Return: 0
  */
 
-int display_env(__attribute__((unused)) char **t_argv, __attribute__((unused)) int err)
+int display_env(__attribute__((unused)) char **t_argv,
+__attribute__((unused)) int err)
 {
 	size_t i;
 	int sz;

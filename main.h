@@ -49,7 +49,7 @@ int handle_builtin(char **line, int err);
 void handle_comments(char *line);
 
 /* function for buitltin commands */
-int _exit_sh(char **t_argv, char *line, char **argv, int c);
+void _exit_sh(char **t_argv, char *line, char **argv, int c);
 int _cd(char **t_argv, __attribute__((unused)) int err);
 /**
  * display_env - displays the env var
@@ -99,3 +99,5 @@ int _isalpha(int c);
 char *_itoa(int num);
 void array_rev(char *arr, int len);
 int num_len(int num);
+
+#endif

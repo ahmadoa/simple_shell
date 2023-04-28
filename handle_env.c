@@ -1,9 +1,11 @@
 #include "main.h"
- /**
-  * _setenv - create new env vars
-  * @new_env: new array of env vars
-  * Return: void
-  */
+
+/**
+ * _setenv - sets new env vars
+ * @new_env: new var to set
+ * Return: void
+ */
+
 void _setenv(char **new_env)
 {
 	int i;

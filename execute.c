@@ -27,7 +27,7 @@ int execute(char **t_argv, char *line, int c, char **argv)
 	{
 		if (_strncmp(*t_argv, "./", 2) != 0 && _strncmp(*t_argv, "/", 1) != 0)
 			get_path(t_argv);
-		if (execve(*t_argv, t_argv, eniron) == -1)
+		if (execve(*t_argv, t_argv, environ) == -1)
 		{
 			display_err(t_argv[0], c, argv);
 			free(line);

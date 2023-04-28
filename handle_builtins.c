@@ -15,7 +15,7 @@ int check_builtin(char **argv)
 		{NULL, NULL}
 	};
 
-	if (*argc == NULL)
+	if (*argv == NULL)
 		return (-1);
 
 	while ((builtins + i)->blt_cmd)
