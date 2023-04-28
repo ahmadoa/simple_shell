@@ -37,7 +37,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 		if (isatty(STDIN_FILENO))
 			prompt();
 		else
-			write(STDERR_FILENO, "\n", 1);
+			write(STDERR_FILENO, "", 0);
 		line = _getline();
 		if (line[0] == '\0')
 			continue;

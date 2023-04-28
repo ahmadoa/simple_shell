@@ -32,7 +32,7 @@ int execute(char **t_argv, char *line, int c, char **argv)
 			display_err(t_argv[0], c, argv);
 			free(line);
 			free(t_argv);
-			exit(EXIT_FAILURE);
+			exit(2);
 		}
 		return (EXIT_SUCCESS);
 	}
