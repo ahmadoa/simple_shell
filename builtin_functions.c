@@ -69,7 +69,7 @@ int _cd(char **t_argv, __attribute__((unused))int err)
 }
 
 /**
- * dispaly_env - display the env var
+ * display_env - display the env var
  * @t_argv: tokenized read input
  * @err: state of execution
  * Return: 0
