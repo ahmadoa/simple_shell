@@ -14,19 +14,29 @@ void file_reader(char *fl, char **argv)
 	size_t sz = 0;
 	int i = 0;
 
-	fp = fopen(fl, "r");
-	if (fp == NULL)
-		exit(EXIT_FAILURE);
-
-	while ((getline(&line, &sz, fp)) != -1)
+	if (access(fl, F_OK) == 0)
 	{
-		i++;
-		handle_file(line, i, fp, argv);
+		fp = fopen(fl, "r");
+		if (fp == NULL)
+			exit(EXIT_FAILURE);
+
+		while ((getline(&line, &sz, fp)) != -1)
+		{
+			i++;
+			handle_file(line, i, fp, argv);
+		}
+		if (line)
+			free(line);
+		fclose(fp);
+		exit(0);
 	}
-	if (line)
-		free(line);
-	fclose(fp);
-	exit(0);
+	else
+	{
+		PRINTER(argv[0]);
+		PRINTER(": ");
+		PRINTER(fl);
+		PRINTER(": No such file or directory\n");
+	}
 }
 
 /**
